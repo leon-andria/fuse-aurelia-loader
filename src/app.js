@@ -1,3 +1,5 @@
+import '~/styles/hello.css'
+
 export class App {
   constructor() {
     this.message = 'Hello World! from FuseBox';

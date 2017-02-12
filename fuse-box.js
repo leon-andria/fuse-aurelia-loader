@@ -6,6 +6,7 @@ var fuse = FuseBox.init({
   outFile: "bundle.js",
   cache : true,
   plugins: [
+    fb.CSSPlugin(),
     fb.HTMLPlugin({ useDefault: true }),
     fb.BabelPlugin({
       test: /\.js$/, // test is optional
