@@ -52,7 +52,7 @@ export class FuseAureliaLoader extends Loader {
       'fetch': function(address) {
         console.log('fetch =>', address)
         let entry = that.getOrCreateTemplateRegistryEntry(address);
-        return entry.templateIsLoaded ? Promise.resolve(entry) : that.templateLoader.loadTemplate(that, entry).then(x => entry);
+        return entry.templateIsLoaded ? entry : that.templateLoader.loadTemplate(that, entry).then(x => entry);
       }
     });
     // this.addPlugin('html-resource-plugin', {
@@ -209,7 +209,7 @@ export class FuseAureliaLoader extends Loader {
       if (!plugin) {
         throw new Error(`Plugin ${loaderPlugin} is not registered in the loader.`);
       }
-      return plugin.fetch(moduleId);
+      return Promise.resolve(plugin.fetch(moduleId));
     }
     //throw new Error(`Unable to find module with ID: ${moduleId}`);
     return null
