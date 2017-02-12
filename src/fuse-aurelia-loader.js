@@ -52,7 +52,7 @@ export class FuseAureliaLoader extends Loader {
       'fetch': function(address) {
         console.log('fetch =>', address)
         let entry = that.getOrCreateTemplateRegistryEntry(address);
-        return entry.templateIsLoaded ? entry : that.templateLoader.loadTemplate(that, entry).then(x => entry);
+        return entry.templateIsLoaded ? Promise.resolve(entry) : that.templateLoader.loadTemplate(that, entry).then(x => entry);
       }
     });
     // this.addPlugin('html-resource-plugin', {
